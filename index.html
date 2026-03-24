@@ -49,8 +49,13 @@
     <h1>かおログ</h1>
     <h2>メール確認完了</h2>
     <p>メールアドレスの確認が完了しました。<br>下のボタンからアプリに戻ってログインしてください。</p>
-    <a href="kaolog://callback" class="btn">アプリを開く</a>
+    <a id="openAppBtn" href="kaolog://callback" class="btn">アプリを開く</a>
     <p class="note">ボタンが反応しない場合は、アプリがインストールされた端末で開いてください。</p>
   </div>
+  <script>
+    const code = new URLSearchParams(window.location.search).get('code');
+    const deepLink = code ? `kaolog://callback?code=${code}` : `kaolog://callback`;
+    document.getElementById('openAppBtn').href = deepLink;
+  </script>
 </body>
 </html>
