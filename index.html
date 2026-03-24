@@ -53,9 +53,18 @@
     <p class="note">ボタンが反応しない場合は、アプリがインストールされた端末で開いてください。</p>
   </div>
   <script>
-    const code = new URLSearchParams(window.location.search).get('code');
-    const deepLink = code ? `kaolog://callback?code=${code}` : `kaolog://callback`;
-    document.getElementById('openAppBtn').href = deepLink;
-  </script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const type = params.get('type'); // recovery or signup
+
+  // URLに応じて表示内容を切り替え
+  if (type === 'recovery' || window.location.search.includes('recovery')) {
+    document.querySelector('h2').textContent = 'パスワードリセット';
+    document.querySelector('p').textContent = 'アプリに戻って新しいパスワードを設定してください。';
+  }
+
+  const deepLink = code ? `kaolog://callback?code=${code}` : `kaolog://callback`;
+  document.getElementById('openAppBtn').href = deepLink;
+</script>
 </body>
 </html>
