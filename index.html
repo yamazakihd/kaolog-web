@@ -57,7 +57,6 @@
   const code = params.get('code');
   const error = params.get('error');
   const errorDescription = params.get('error_description');
-
   if (error) {
     document.querySelector('h2').textContent = 'リンクが無効です';
     document.querySelector('p').textContent = 
@@ -66,6 +65,8 @@
   } else {
     const deepLink = code ? `kaolog://callback?code=${code}` : `kaolog://callback`;
     document.getElementById('openAppBtn').href = deepLink;
+    // 自動的にアプリを開く
+    window.location.href = deepLink;
   }
   </script>
 </body>
